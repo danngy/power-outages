@@ -1,4 +1,4 @@
-# power-outages
+# Power Outages Analysis
 This is a homework for EECS 398 at U-M 
 
 remote_theme: pages-themes/cayman@v0.2.0
