@@ -74,7 +74,7 @@ This is a homework for EECS 398 at U-M
     <h2>Total Price Per Region</h2>
     <p>This box plot displays the total price per climate region based on the dataset. The x-axis represents the climate regions, while the y-axis shows the total price for each region.</p>
     <iframe
-      src="assets/total_price_per_region.html"
+      src="assets/price_per_region.html"
       width="800"
       height="600"
       frameborder="0"
