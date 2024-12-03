@@ -59,3 +59,25 @@ This is a homework for EECS 398 at U-M
   ></iframe>
 </section>
 
+<section>
+  <h2>Power Outages by Year</h2>
+  <p>This bar chart displays the number of power outages per year based on the dataset. The years are represented along the x-axis, while the y-axis shows the total number of outages.</p>
+  <iframe
+    src="assets/power_outages_by_year.html"
+    width="800"
+    height="600"
+    frameborder="0"
+  ></iframe>
+</section>
+
+<section>
+    <h2>Total Price Per Region</h2>
+    <p>This box plot displays the total price per climate region based on the dataset. The x-axis represents the climate regions, while the y-axis shows the total price for each region.</p>
+    <iframe
+      src="assets/total_price_per_region.html"
+      width="800"
+      height="600"
+      frameborder="0"
+    ></iframe>
+  </section>
+
