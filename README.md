@@ -48,7 +48,6 @@ This is a homework for EECS 398 at U-M
   <p>Dropping irrelevant columns and rows with missing values simplifies the dataset and ensures compatibility with modeling tools. Extracting date-related features helps uncover temporal trends in power outages, which are critical for predictive analysis.</p>
 </section>
 
-fig.write_html('assets/power_outages_by_region.html', include_plotlyjs='cdn')
 <section>
   <h2>Power Outages by Region</h2>
   <p>This bar chart displays the number of power outages per region based on the dataset. The regions are represented along the x-axis, while the y-axis shows the total number of outages.</p>
