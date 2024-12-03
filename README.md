@@ -46,7 +46,6 @@ This is a homework for EECS 398 at U-M
   </ol>
   <h3>Why These Steps Are Important</h3>
   <p>Dropping irrelevant columns and rows with missing values simplifies the dataset and ensures compatibility with modeling tools. Extracting date-related features helps uncover temporal trends in power outages, which are critical for predictive analysis.</p>
-</section>
 
 <section>
   <h2>Power Outages by Region</h2>
