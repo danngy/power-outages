@@ -1,1 +1,0 @@
-fig.write_html('assets/power_outages_by_region.html', include_plotlyjs='cdn')
