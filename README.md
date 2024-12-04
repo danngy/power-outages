@@ -192,3 +192,26 @@ by <em>Jordyn Ives</em> and <em>Dan Nguyen</em>
     frameborder="0"
   ></iframe>
 </section>
+
+<div>
+<h2>Prediction Problem</h2>
+    <p>
+        Our prediction problem is can we predict the length of a power outage given factors like region, state and cause category. 
+        Since <code>OUTAGE.DURATION</code> is a quantitative variable, this prediction problem is best explored using linear regression. 
+        At the time of the outage, we know the state and region of the outage. We also know the cause category, though there is the 
+        slight chance more information can be uncovered as time goes on. We chose this response variable because it has valuable 
+        implications for power companies - if we can predict the outage duration, it can help customers understand what is on the 
+        horizon and deploy adequate resources.
+    </p>
+    <p>
+        To evaluate this initial model, and other iterations, we are using Mean Squared Error (MSE). MSE is less robust to outliers, 
+        but in this case, an abnormally large difference between the predicted and actual power outage duration can have drastic results 
+        for customers and the power company. If the model doesn’t take into account the longest and smallest outages, predictions may be misleading. 
+        Thus, it is important that this model is as accurate as possible, especially in a stressful outage during a storm or disaster.
+    </p>
+    <p>
+        Initially, we are evaluating the model's MSE on the test vs training set to determine if it is underfit or overfit, since an 
+        abnormally low MSE on the training set than a much higher one on the test set represents overfitting. And from there, depending 
+        on the degree of overfitting or underfitting, we will take steps to regularize our model and adapt it.
+    </p>
+ </div>
