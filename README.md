@@ -1,14 +1,13 @@
 <h1>Power Outages Analysis</h1>
 by <em>Jordyn Ives</em> and <em>Dan Nguyen</em>
-</p>
 
  <p>
       Have you ever been stuck in a blackout wondering how long it will last or why it happened in the first place? 
       What if energy companies could predict outages before they happen and take action to minimize their impact? 
       How can understanding the factors behind major outages improve the reliability of energy services and customer satisfaction?
   </p>
-    <h2>Introduction</h2>
-    <p>
+  <h2>Introduction</h2>
+  <p>
         This analysis makes use of the Power Outage dataset, which tracks power outages in the US between the years 2000-2016. Though at first glance this dataset seems rather technical, it is important for understanding power outage trends across the US and the qualities that have remained constant and changed over the years. There are 1,533 rows, each corresponding to a different power outage. There are 55 columns in this dataset, most of which are categorical and correspond to specific characteristics relating to power outages.
     </p>
     <p>
@@ -22,7 +21,7 @@ by <em>Jordyn Ives</em> and <em>Dan Nguyen</em>
     </p>
     <p>
         We also explore <code>OUTAGE.DURATION</code>’s change over time using the <code>YEAR</code> column. With the acceleration of climate change in recent years, simple graphs showing the number of outages per year and the average severity per year are useful. Additionally, understanding how a region comes into play adds another layer of complexity: the categorical <code>CLIMATE.REGION</code> column breaks down outages into one of 12 US regions. For our model, we used a few other quantitative variables, but our main analytical question and exploration focused on these variables and analyzing trends over time.
-    </p>
+  </p>
 
   <h2>Data Cleaning</h2>
   <ol>
