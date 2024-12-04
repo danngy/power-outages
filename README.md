@@ -2,7 +2,7 @@
 by <em>Jordyn Ives</em> and <em>Dan Nguyen</em>
 
  <p>
-      Have you ever been stuck in a blackout wondering how long it will last or why it happened in the first place? 
+      Have you ever been stuck in a power outage wondering how long it will last or why it happened in the first place? 
       What if energy companies could predict outages before they happen and take action to minimize their impact? 
       How can understanding the factors behind major outages improve the reliability of energy services and customer satisfaction?
   </p>
