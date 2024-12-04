@@ -80,3 +80,46 @@ This is a homework for EECS 398 at U-M
   ></iframe>
 </section>
 
+<section>
+  <h2>Residential Price vs Outage Duration</h2>
+  <p>This scatter plot visualizes the relationship between residential price and outage duration, categorized by climate. The x-axis represents residential price, while the y-axis shows the outage duration in minutes. The points are color-coded by climate category for easy differentiation.</p>
+  <iframe
+    src="assets/res_price_vs_outage_duration.html"
+    width="800"
+    height="600"
+    frameborder="0"
+  ></iframe>
+</section>
+
+<section>
+  <h2>Power Outages by Year and Climate Region</h2>
+  <p>This heatmap displays the distribution of power outages across years and climate regions. The x-axis represents climate regions, while the y-axis represents years. The color intensity indicates the number of outages, with brighter colors showing higher outage counts.</p>
+  <iframe
+    src="assets/power_outages_by_year_and_region.html"
+    width="800"
+    height="600"
+    frameborder="0"
+  ></iframe>
+</section>
+
+<section>
+  <h2>Number of Outages Over the Years by Region</h2>
+  <p>This line plot shows the trends in the number of power outages over the years across different climate regions. Each line represents a specific region, with the x-axis indicating the years and the y-axis showing the number of outages.</p>
+  <iframe
+    src="assets/number_of_outages_by_region.html"
+    width="800"
+    height="600"
+    frameborder="0"
+  ></iframe>
+</section>
+
+<section>
+  <h2>Correlation Matrix: Residential Price, Area Percentage, and Outage Duration</h2>
+  <p>This heatmap visualizes the correlation between residential price, area percentage under certain conditions, and outage duration. The color intensity indicates the strength and direction of the correlation, where 1 represents a perfect positive correlation and -1 represents a perfect negative correlation.</p>
+  <iframe
+    src="assets/correlation_matrix.html"
+    width="800"
+    height="600"
+    frameborder="0"
+  ></iframe>
+</section>
