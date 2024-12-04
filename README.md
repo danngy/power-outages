@@ -1,5 +1,7 @@
 <h1>Power Outages Analysis</h1>
+<p style="text-align: center; font-size: 1rem; color: #555; margin-top: -10px;">
   by <em>Jordyn Ives</em> and <em>Dan Nguyen</em>
+</p>
 
  <p>
       Have you ever been stuck in a blackout wondering how long it will last or why it happened in the first place? 
