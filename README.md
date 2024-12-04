@@ -1,5 +1,6 @@
 <h1>Power Outages Analysis</h1>
-**by Jordyn Ives and Dan Nguyen** 
+  by <em>Jordyn Ives</em> and <em>Dan Nguyen</em>
+
  <p>
       Have you ever been stuck in a blackout wondering how long it will last or why it happened in the first place? 
       What if energy companies could predict outages before they happen and take action to minimize their impact? 
