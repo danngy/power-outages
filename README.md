@@ -58,7 +58,6 @@ by <em>Jordyn Ives</em> and <em>Dan Nguyen</em>
     height="600"
     frameborder="0"
   ></iframe>
-</section>
 
 <section>
   <h2>Power Outages by Year</h2>
@@ -69,8 +68,7 @@ by <em>Jordyn Ives</em> and <em>Dan Nguyen</em>
     height="600"
     frameborder="0"
   ></iframe>
-</section>
-
+ 
 <section>
   <h2>Total Price Per Region</h2>
   <p>This box plot visualizes the total price for each climate region in the dataset. The x-axis represents the climate regions, while the y-axis shows the total price distribution for each region. The color-coded regions help in identifying trends and differences among them.</p>
@@ -80,7 +78,6 @@ by <em>Jordyn Ives</em> and <em>Dan Nguyen</em>
     height="600"
     frameborder="0"
   ></iframe>
-</section>
 
 <section>
   <h2>Residential Price vs Outage Duration</h2>
@@ -91,7 +88,6 @@ by <em>Jordyn Ives</em> and <em>Dan Nguyen</em>
     height="600"
     frameborder="0"
   ></iframe>
-</section>
 
 <section>
   <h2>Power Outages by Year and Climate Region</h2>
@@ -102,7 +98,6 @@ by <em>Jordyn Ives</em> and <em>Dan Nguyen</em>
     height="600"
     frameborder="0"
   ></iframe>
-</section>
 
 <section>
   <h2>Number of Outages Over the Years by Region</h2>
@@ -113,7 +108,6 @@ by <em>Jordyn Ives</em> and <em>Dan Nguyen</em>
     height="600"
     frameborder="0"
   ></iframe>
-</section>
 
 <section>
   <h2>Correlation Matrix: Residential Price, Area Percentage, and Outage Duration</h2>
