@@ -1,24 +1,97 @@
-# Power Outages Analysis
-This is a homework for EECS 398 at U-M 
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Power Outages Analysis</title>
+  <style>
+    /* General Styles */
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      margin: 0;
+      padding: 20px;
+      background-color: #f9f9f9;
+    }
 
-<section>
-  <h2>1: Introduction</h2>
-  <p>
-    This analysis makes use of the Power Outage dataset, which tracks power outages in the US between the years 2000-2016. Though at first glance this dataset seems rather technical, it is important for understanding power outage trends across the US and the qualities that have remained constant and changed over the years. There are 1,533 rows, each corresponding to a different power outage. There are 55 columns in this dataset, most of which are categorical and correspond to specific characteristics relating to power outages.
-  </p>
-  <p>
-    The purpose of this analysis is to explore trends in power outage severity over time, centered around the analytical question:
-  </p>
-  <blockquote>
-    <strong>What are the characteristics of high-impact power outages? How have these factors and characteristics changed over time, and based on this, how can energy companies best allocate their resources to helping customers?</strong>
-  </blockquote>
-  <p>
-    The column <code>OUTAGE.DURATION</code> is important here because it measures how severe a power outage is. The longer the power outage, the more impactful it is to residents, and the more revenue is lost for the company. It is interesting to explore the factors that contribute to longer power outages and whether it is possible to predict the length of a power outage given other data. <code>OUTAGE.DURATION</code> is a quantitative continuous variable that is measured in minutes, with a minimum of 1 minute and a mean of 108,653 minutes.
-  </p>
-  <p>
-    We also explore <code>OUTAGE.DURATION</code>’s change over time using the <code>YEAR</code> column. With the acceleration of climate change in recent years, simple graphs showing the number of outages per year and the average severity per year are useful. Additionally, understanding how a region comes into play adds another layer of complexity: the categorical <code>CLIMATE.REGION</code> column breaks down outages into one of 12 US regions. For our model, we used a few other quantitative variables, but our main analytical question and exploration focused on these variables and analyzing trends over time.
-  </p>
-</section>
+    /* Container */
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: #ffffff;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    h1 {
+      font-size: 2rem;
+      color: #2c3e50;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      color: #2c3e50;
+      margin-top: 1.5rem;
+    }
+
+    p {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    blockquote {
+      font-style: italic;
+      color: #555;
+      border-left: 4px solid #2c3e50;
+      margin: 1.5rem 0;
+      padding-left: 1rem;
+    }
+
+    code {
+      background: #f4f4f4;
+      padding: 2px 4px;
+      border-radius: 3px;
+      color: #c7254e;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #777;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Power Outages Analysis</h1>
+    <p>
+      Have you ever been stuck in a blackout wondering how long it will last or why it happened in the first place? 
+      What if energy companies could predict outages before they happen and take action to minimize their impact? 
+      How can understanding the factors behind major outages improve the reliability of energy services and customer satisfaction?
+    </p>
+    <section>
+      <h2>Introduction</h2>
+      <p>
+        This analysis makes use of the Power Outage dataset, which tracks power outages in the US between the years 2000-2016. Though at first glance this dataset seems rather technical, it is important for understanding power outage trends across the US and the qualities that have remained constant and changed over the years. There are 1,533 rows, each corresponding to a different power outage. There are 55 columns in this dataset, most of which are categorical and correspond to specific characteristics relating to power outages.
+      </p>
+      <p>
+        The purpose of this analysis is to explore trends in power outage severity over time, centered around the analytical question:
+      </p>
+      <blockquote>
+        <strong>What are the characteristics of high-impact power outages? How have these factors and characteristics changed over time, and based on this, how can energy companies best allocate their resources to helping customers?</strong>
+      </blockquote>
+      <p>
+        The column <code>OUTAGE.DURATION</code> is important here because it measures how severe a power outage is. The longer the power outage, the more impactful it is to residents, and the more revenue is lost for the company. It is interesting to explore the factors that contribute to longer power outages and whether it is possible to predict the length of a power outage given other data. <code>OUTAGE.DURATION</code> is a quantitative continuous variable that is measured in minutes, with a minimum of 1 minute and a mean of 108,653 minutes.
+      </p>
+      <p>
+        We also explore <code>OUTAGE.DURATION</code>’s change over time using the <code>YEAR</code> column. With the acceleration of climate change in recent years, simple graphs showing the number of outages per year and the average severity per year are useful. Additionally, understanding how a region comes into play adds another layer of complexity: the categorical <code>CLIMATE.REGION</code> column breaks down outages into one of 12 US regions. For our model, we used a few other quantitative variables, but our main analytical question and exploration focused on these variables and analyzing trends over time.
+      </p>
+    </section>
+  </div>
 
 
   <h2>Data Cleaning</h2>
