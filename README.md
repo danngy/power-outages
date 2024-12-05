@@ -225,54 +225,31 @@ by <em>Jordyn Ives</em> and <em>Dan Nguyen</em>
     It is also useful to add more information to this model. While state and <code>CAUSE.CATEGORY</code> are useful predictors, incorporating new information like <code>AREAPCT_UC</code>, 
     the percent of the outage’s state that is urban, can reveal interesting patterns. For example, it can help identify if outages in more rural areas last longer.
   </p>
-  <pre>
-    <code>
-X = df.loc[:, df.columns != 'OUTAGE.DURATION']
-y = df['OUTAGE.DURATION']
-
-X_train2, X_test2, y_train2, y_test2 = train_test_split(X, y, test_size=0.25, random_state=42)
-
-pl = make_pipeline([
-    ('one-hot', OneHotEncoder(drop='first')),
-    ('lin-reg', LinearRegression())
-])
-
-preprocessing = make_column_transformer(pl, ['CLIMATE.CATEGORY', 'CAUSE.CATEGORY'])
-
-model = make_pipeline(pl, LinearRegression())
-                                        
-model.fit(X_train2, y_train2)
-
-y_pred_train2 = model.predict(X_train2)
-y_pred_test2 = model.predict(X_test2)
-
-train_mse2 = mean_squared_error(y_train2, y_pred_train2)
-test_mse2 = mean_squared_error(y_test2)
-
-print(f"Train MSE: {train_mse2}")
-print(f"Test MSE: {test_mse2}")
-
-# Outputs:
-# Train MSE: 20589306.278772976
-# Test MSE: 58370110.2791249
-    </code>
-  </pre>
-  <div>
-    <h3>Supporting Visualizations</h3>
-    <p>The following graphs demonstrate key patterns in our data that informed the initial model:</p>
-    <div>
-      <h4>1. Boxplot of Outage Duration by Climate Category</h4>
-      <img src="assets/climate_category_boxplot.png" alt="Boxplot of Outage Duration by Climate Category" style="width:100%; max-width:800px;">
-      <p>This boxplot shows the distribution of outage durations across different climate categories, highlighting how some categories have longer outages than others.</p>
-    </div>
-    <div>
-      <h4>2. Bar Plot of Average Outage Duration by Cause Category</h4>
-      <img src="assets/cause_category_boxplot.png" alt="Bar Plot of Average Outage Duration by Cause Category" style="width:100%; max-width:800px;">
-      <p>This bar plot highlights the average outage duration for different cause categories, showing significant variation across categories like fuel supply emergencies and severe weather.</p>
-    </div>
-  </div>
+  <h3>Supporting Visualizations</h3>
+  <p>
+    The following graphs illustrate patterns observed in our data, which supported our initial model development:
+  </p>
+  <h4>1. Boxplot of Outage Duration by Climate Category</h4>
+  <p>
+    This boxplot visualizes the distribution of outage durations across different climate categories. It highlights significant variations in outage durations within different categories, such as "normal," "cold," and "warm."
+  </p>
+  <iframe
+    src="assets/climate_category_boxplot.png"
+    width="800"
+    height="600"
+    frameborder="0"
+  ></iframe>
+  <h4>2. Bar Plot of Average Outage Duration by Cause Category</h4>
+  <p>
+    This bar plot presents the average outage duration for each cause category. It highlights substantial differences in average durations across categories like "fuel supply emergencies" and "severe weather," which are key drivers in our model.
+  </p>
+  <iframe
+    src="assets/cause_category_boxplot.png"
+    width="800"
+    height="600"
+    frameborder="0"
+  ></iframe>
 </section>
- 
 <section>
   <h2>Final Model</h2>
   <p>
