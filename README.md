@@ -211,6 +211,51 @@ by <em>Jordyn Ives</em> and <em>Dan Nguyen</em>
  </div>
 
 <section>
+  <h2>Initial Model</h2>
+  <p>
+    This initial model uses two categorical nominal variables, <code>CLIMATE.CATEGORY</code> and <code>CAUSE.CATEGORY</code>. These variables are categorical because they represent belonging to different groups, and are nominal because there is no inherent order. 
+    We did some initial exploration using a heat map for quantitative variables, and plots showing the breakdown of <code>OUTAGE.DURATION</code> across different climate regions and cause categories. The latter of these relationships was more intriguing initially, so we decided to head in that direction.
+  </p>
+  <p>
+    Since these variables are categorical, we used one-hot encoding in our initial pipeline. This was a simple pipeline, as we initially performed no other transformations to our model. 
+    At first glance, there is a large difference between the train Mean Squared Error (MSE) of <strong>20,589,306</strong> and the test MSE of <strong>58,370,110</strong>. 
+    The test MSE being double that of the training MSE indicates that this model is overfit to the training data and should be improved.
+  </p>
+  <p>
+    It is also useful to add more information to this model. While state and <code>CAUSE.CATEGORY</code> are useful predictors, incorporating new information like <code>AREAPCT_UC</code>, 
+    the percent of the outage’s state that is urban, can reveal interesting patterns. For example, it can help identify if outages in more rural areas last longer.
+  </p>
+  <pre>
+    <code>
+X = df.loc[:, df.columns != 'OUTAGE.DURATION']
+y = df['OUTAGE.DURATION']
+
+X_train2, X_test2, y_train2, y_test2 = train_test_split(X, y, test_size=0.25, random_state=42)
+
+pl = make_pipeline([
+    ('one-hot', OneHotEncoder(drop='first')),
+    ('lin-reg', LinearRegression())
+])
+
+preprocessing = make_column_transformer(pl, ['CLIMATE.CATEGORY', 'CAUSE.CATEGORY'])
+
+model = make_pipeline(pl, LinearRegression())
+                                        
+model.fit(X_train2, y_train2)
+
+y_pred_train2 = model.predict(X_train2)
+y_pred_test2 = model.predict(X_test2)
+
+train_mse2 = mean_squared_error(y_train2, y_pred_train2)
+test_mse2 = mean_squared_error(y_test2)
+
+print(f"Train MSE: {train_mse2}")
+print(f"Test MSE: {test_mse2}")
+    </code>
+  </pre>
+</section>
+ 
+<section>
   <h2>Final Model</h2>
   <p>
     To improve our final model, we decided to add one quantitative variable. Though randomly adding variables is not the most efficient way to produce a final model, the variable <code>RES.PRICE</code> had a high correlation (0.93) with <code>OUTAGE.DURATION</code>. Since this variable represents the monthly electric price for the area where that outage occurs, it adds a new layer of data and relationships not reflected in our other two variables. It is also interesting to explore if power companies are quicker to resolve areas that have higher vs lower rates. A graph of <code>OUTAGE.DURATION</code> vs <code>RES.PRICE</code> demonstrates that strong correlation. To best represent the relationship, we explored adding polynomial features to <code>RES.PRICE</code>, using cross-validation to find the best polynomial features to add. We also decided to apply a <code>StandardScaler</code> transformation.
