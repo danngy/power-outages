@@ -255,10 +255,23 @@ print(f"Test MSE: {test_mse2}")
 # Outputs:
 # Train MSE: 20589306.278772976
 # Test MSE: 58370110.2791249
-   </code>
+    </code>
   </pre>
+  <div>
+    <h3>Supporting Visualizations</h3>
+    <p>The following graphs demonstrate key patterns in our data that informed the initial model:</p>
+    <div>
+      <h4>1. Boxplot of Outage Duration by Climate Category</h4>
+      <img src="assets/climate_category_boxplot.png" alt="Boxplot of Outage Duration by Climate Category" style="width:100%; max-width:800px;">
+      <p>This boxplot shows the distribution of outage durations across different climate categories, highlighting how some categories have longer outages than others.</p>
+    </div>
+    <div>
+      <h4>2. Bar Plot of Average Outage Duration by Cause Category</h4>
+      <img src="assets/cause_category_boxplot.png" alt="Bar Plot of Average Outage Duration by Cause Category" style="width:100%; max-width:800px;">
+      <p>This bar plot highlights the average outage duration for different cause categories, showing significant variation across categories like fuel supply emergencies and severe weather.</p>
+    </div>
+  </div>
 </section>
-
  
 <section>
   <h2>Final Model</h2>
