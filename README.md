@@ -235,8 +235,8 @@ by <em>Jordyn Ives</em> and <em>Dan Nguyen</em>
   </p>
   <iframe
     src="assets/climate_category_boxplot.png"
-    width="800"
-    height="600"
+    width="600"
+    height="400"
     frameborder="0"
   ></iframe>
   <h4>2. Bar Plot of Average Outage Duration by Cause Category</h4>
@@ -245,8 +245,8 @@ by <em>Jordyn Ives</em> and <em>Dan Nguyen</em>
   </p>
   <iframe
     src="assets/cause_category_boxplot.png"
-    width="800"
-    height="600"
+    width="600"
+    height="400"
     frameborder="0"
   ></iframe>
 </section>
