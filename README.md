@@ -128,16 +128,10 @@ by <em>Jordyn Ives</em> and <em>Dan Nguyen</em>
 <section>
   <h2>Power Outages by Year and Climate Region</h2>
   <p>
-    This heatmap visualizes the number of power outages across different climate regions and years in the United States. To generate this graph, we created a crosstab between the <code>YEAR</code> and <code>CLIMATE.REGION</code> columns, counting the number of outages for each combination of year and region. The color intensity represents the frequency of outages, with brighter colors indicating a higher number of outages.
-  </p>
-  <p>
-    The x-axis displays the climate regions, categorizing the United States into distinct geographical areas. The y-axis represents the years, showing the time span from 2000 to 2016. The color bar indicates the number of outages, with yellow representing the highest frequency of outages and dark purple representing the lowest frequency.
-  </p>
-  <p>
-    The heatmap highlights temporal and regional trends, revealing periods of increased outage activity in specific regions. For instance, certain regions like the Central or Northeast regions show brighter areas in specific years, indicating spikes in outage occurrences. This graph helps us to identify both historical patterns and anomalies in outage occurrences, enabling targeted resource allocation and forecasting for high-risk regions and years. It also provides insights into how climate-related factors may influence outage trends.
+    The provided aggregation is a cross-tabulation of the dataset's YEAR and CLIMATE.REGION columns. It summarizes the number of occurrences for each climate region across different years, with rows representing years and columns representing climate regions. This allows for easy identification of trends or patterns in the data across regions over time.
   </p>
   <iframe
-    src="assets/power_outages_by_year_and_region.html"
+    src="assets/yearly_distribution_climate_regions.png"
     width="800"
     height="600"
     frameborder="0"
