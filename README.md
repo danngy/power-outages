@@ -209,3 +209,70 @@ by <em>Jordyn Ives</em> and <em>Dan Nguyen</em>
         on the degree of overfitting or underfitting, we will take steps to regularize our model and adapt it.
     </p>
  </div>
+
+<section>
+  <h2>Final Model</h2>
+  <p>
+    To improve our final model, we decided to add one quantitative variable. Though randomly adding variables is not the most efficient way to produce a final model, the variable <code>RES.PRICE</code> had a high correlation (0.93) with <code>OUTAGE.DURATION</code>. Since this variable represents the monthly electric price for the area where that outage occurs, it adds a new layer of data and relationships not reflected in our other two variables. It is also interesting to explore if power companies are quicker to resolve areas that have higher vs lower rates. A graph of <code>OUTAGE.DURATION</code> vs <code>RES.PRICE</code> demonstrates that strong correlation. To best represent the relationship, we explored adding polynomial features to <code>RES.PRICE</code>, using cross-validation to find the best polynomial features to add. We also decided to apply a <code>StandardScaler</code> transformation.
+  </p>
+  <p>
+    Another variable we decided to add was <code>AREAPCT_UC</code>, which is a quantitative variable that describes the percent of the outage’s state that is urban. The reason this variable is important is because it accounts for the difference in response times for rural vs urban areas. And if a state has a higher percentage of rural areas, perhaps the response time will differ. For this variable, we decided to apply a <code>StandardScaler</code> transformation.
+  </p>
+  <p>
+    The reason we decided to use <code>StandardScaler</code> is for our final model, which also uses <code>LASSO</code> regression. LASSO is important when we are trying to identify the best parameters in the model, with the goal of generalizing unseen data. When using LASSO, it is important to use the <code>StandardScaler</code> transformer to ensure that all coefficients are penalized equally.
+  </p>
+  <pre>
+    <code>
+from sklearn.impute import SimpleImputer
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import Lasso
+from sklearn.preprocessing import FunctionTransformer, PolynomialFeatures, OneHotEncoder
+from sklearn.pipeline import Pipeline, make_pipeline
+from sklearn.compose import make_column_transformer
+from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import GridSearchCV
+from sklearn.linear_model import Ridge
+
+X = df.loc[:, df.columns != 'OUTAGE.DURATION']
+y = df['OUTAGE.DURATION']
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=42)
+
+categorical_transforms = make_pipeline(OneHotEncoder
+                                       (drop='first', handle_unknown='ignore'), SimpleImputer(strategy = 'most_frequent'))
+numerical_cols = make_pipeline(SimpleImputer(fill_value=0), StandardScaler(),PolynomialFeatures(2,include_bias=False))
+
+preprocessing = make_column_transformer((categorical_transforms, ['CLIMATE.CATEGORY', 'CAUSE.CATEGORY']),
+                                        (numerical_cols, list(X_train.select_dtypes('number').columns)))
+
+hyperparams = {
+'ridge__alpha' : 2.0 ** np.arange(-5, 20)}
+#'columntransformernumerical_cols__pipeline__polynomialfeatures__degree': range(1, 6)}
+
+searcher = GridSearchCV(
+estimator = make_pipeline(preprocessing, Ridge()),
+param_grid=hyperparams,
+cv=5, # k = 5.
+scoring='neg_mean_squared_error'
+)
+
+searcher.fit(X_train, y_train)
+
+#model = make_pipeline(preprocessing, Lasso())
+#model.fit(X_train, y_train)
+
+y_pred_train = searcher.predict(X_train)
+y_pred_test = searcher.predict(X_test)
+
+train_mse = mean_squared_error(y_train, y_pred_train)
+test_mse = mean_squared_error(y_test, y_pred_test)
+
+print(f"Train MSE: {train_mse}")
+print(f"Test MSE: {test_mse}")
+
+# Output:
+# Train MSE: 17413483.47043481
+# Test MSE: 60549018.451451585
+    </code>
+  </pre>
+</section>
