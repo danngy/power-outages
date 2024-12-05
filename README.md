@@ -273,6 +273,6 @@ print(f"Test MSE: {test_mse}")
 # Output:
 # Train MSE: 17413483.47043481
 # Test MSE: 60549018.451451585
-    </code>
+   </code>
   </pre>
 </section>
