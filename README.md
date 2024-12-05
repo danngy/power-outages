@@ -218,7 +218,7 @@ by <em>Jordyn Ives</em> and <em>Dan Nguyen</em>
   </p>
   <p>
     Since these variables are categorical, we used one-hot encoding in our initial pipeline. This was a simple pipeline, as we initially performed no other transformations to our model. 
-    At first glance, there is a large difference between the train Mean Squared Error (MSE) of <strong>20,589,306</strong> and the test MSE of <strong>58,370,110</strong>. 
+    At first glance, there is a large difference between the train Mean Squared Error (MSE) of <strong>20,589,306.28</strong> and the test MSE of <strong>58,370,110.28</strong>. 
     The test MSE being double that of the training MSE indicates that this model is overfit to the training data and should be improved.
   </p>
   <p>
@@ -251,9 +251,14 @@ test_mse2 = mean_squared_error(y_test2)
 
 print(f"Train MSE: {train_mse2}")
 print(f"Test MSE: {test_mse2}")
-    </code>
+
+# Outputs:
+# Train MSE: 20589306.278772976
+# Test MSE: 58370110.2791249
+   </code>
   </pre>
 </section>
+
  
 <section>
   <h2>Final Model</h2>
