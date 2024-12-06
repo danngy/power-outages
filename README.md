@@ -23,7 +23,7 @@ by <em>Jordyn Ives</em> and <em>Dan Nguyen</em>
         We also explore <code>OUTAGE.DURATION</code>’s change over time using the <code>YEAR</code> column. With the acceleration of climate change in recent years, simple graphs showing the number of outages per year and the average severity per year are useful. Additionally, understanding how a region comes into play adds another layer of complexity: the categorical <code>CLIMATE.REGION</code> column breaks down outages into one of 12 US regions. For our model, we used a few other quantitative variables, but our main analytical question and exploration focused on these variables and analyzing trends over time.
  </p>
 
-  <h2>Data Cleaning</h2>
+  <h2>Data Cleaning and Exploratory Data Analysis</h2>
   <ol>
     <li>
       <strong>Removing Unnecessary Columns:</strong>
