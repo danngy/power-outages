@@ -189,41 +189,27 @@ by <em>Jordyn Ives</em> and <em>Dan Nguyen</em>
 
 <div>
 <h2>Prediction Problem</h2>
-    <p>
-        Our prediction problem is can we predict the length of a power outage given factors like region, state and cause category. 
-        Since <code>OUTAGE.DURATION</code> is a quantitative variable, this prediction problem is best explored using linear regression. 
-        At the time of the outage, we know the state and region of the outage. We also know the cause category, though there is the 
-        slight chance more information can be uncovered as time goes on. We chose this response variable because it has valuable 
-        implications for power companies - if we can predict the outage duration, it can help customers understand what is on the 
-        horizon and deploy adequate resources.
-    </p>
-    <p>
-        To evaluate this initial model, and other iterations, we are using Mean Squared Error (MSE). MSE is less robust to outliers, 
-        but in this case, an abnormally large difference between the predicted and actual power outage duration can have drastic results 
-        for customers and the power company. If the model doesn’t take into account the longest and smallest outages, predictions may be misleading. 
-        Thus, it is important that this model is as accurate as possible, especially in a stressful outage during a storm or disaster.
-    </p>
-    <p>
-        Initially, we are evaluating the model's MSE on the test vs training set to determine if it is underfit or overfit, since an 
-        abnormally low MSE on the training set than a much higher one on the test set represents overfitting. And from there, depending 
-        on the degree of overfitting or underfitting, we will take steps to regularize our model and adapt it.
-    </p>
+   <p>
+    Our prediction problem is: can we predict the length of a power outage given factors like region, state, and cause category? Since <strong>OUTAGE.DURATION</strong> is a quantitative variable, this prediction problem is best explored using linear regression. At the time of the outage, we know the <strong>CLIMATE CATEGORY</strong> of the outage. We also know the <strong>CAUSE CATEGORY</strong>, though there is a slight chance more information can be uncovered as time goes on. We chose this response variable because it has valuable implications for power companies—if we can predict the outage duration, it can help customers understand what is on the horizon and deploy adequate resources.
+  </p>
+  <p>
+    To evaluate this initial model and other iterations, we are using <strong>Mean Squared Error (MSE)</strong>. MSE is less robust to outliers, but in this case, an abnormally large difference between the predicted and actual power outage duration can have drastic results for customers and the power company. If the model doesn’t take into account the longest and smallest outages, predictions may be misleading. Thus, it is important that this model is as accurate as possible, especially in a stressful outage during a storm or disaster.
+  </p>
+  <p>
+    Initially, we are evaluating the model's MSE on the test vs. training set to determine if it is underfit or overfit, since an abnormally low MSE on the training set compared to a much higher one on the test set represents overfitting. From there, depending on the degree of overfitting or underfitting, we will take steps to regularize our model and adapt it.
+  </p>
  </div>
 
 <section>
   <h2>Initial Model</h2>
   <p>
-    This initial model uses two categorical nominal variables, <code>CLIMATE.CATEGORY</code> and <code>CAUSE.CATEGORY</code>. These variables are categorical because they represent belonging to different groups, and are nominal because there is no inherent order. 
-    We did some initial exploration using a heat map for quantitative variables, and plots showing the breakdown of <code>OUTAGE.DURATION</code> across different climate regions and cause categories. The latter of these relationships was more intriguing initially, so we decided to head in that direction.
+    This initial model uses two categorical nominal variables, <strong>CLIMATE.CATEGORY</strong> and <strong>CAUSE.CATEGORY</strong>. These variables are categorical because they represent belonging to a different group and are nominal because there is no inherent order. We did some initial exploration using a heat map for quantitative variables and plots showing the breakdown of <strong>OUTAGE.DURATION</strong> across different climate regions and cause categories. The latter of these relationships was more intriguing initially, so we decided to head in that direction. Additionally, at the time of prediction, we will have access to the <strong>CAUSE.CATEGORY</strong> and <strong>CLIMATE.CATEGORY</strong> of a given power outage, so these variables are fit to use in a predictive model.
   </p>
   <p>
-    Since these variables are categorical, we used one-hot encoding in our initial pipeline. This was a simple pipeline, as we initially performed no other transformations to our model. 
-    At first glance, there is a large difference between the train Mean Squared Error (MSE) of <strong>20,589,306.28</strong> and the test MSE of <strong>58,370,110.28</strong>. 
-    The test MSE being double that of the training MSE indicates that this model is overfit to the training data and should be improved.
+    Since these variables are categorical, we used <strong>one-hot encoding</strong> in our initial pipeline. This was a simple pipeline, as we initially did no other transformations to our model. At first glance, there is a large difference between the train MSE (<strong>20,589,306</strong>) and test MSE (<strong>58,370,110</strong>). The test MSE is double that of training, showing that this model is overfit to the training data and should be improved.
   </p>
   <p>
-    It is also useful to add more information to this model. While state and <code>CAUSE.CATEGORY</code> are useful predictors, incorporating new information like <code>AREAPCT_UC</code>, 
-    the percent of the outage’s state that is urban, can reveal interesting patterns. For example, it can help identify if outages in more rural areas last longer.
+    It is also useful to add more information to this model. While <strong>CLIMATE.CATEGORY</strong> and <strong>CAUSE.CATEGORY</strong> are useful predictors, incorporating new information like <strong>UTIL.CONTRI</strong>, the percentage of the state’s GDP that comes from the utilities sector, is useful. This variable can reveal if outages in areas with more robust utilities infrastructure are resolved quicker, for example.
   </p>
   <h3>Supporting Visualizations</h3>
   <p>
@@ -253,66 +239,77 @@ by <em>Jordyn Ives</em> and <em>Dan Nguyen</em>
 <section>
   <h2>Final Model</h2>
   <p>
-    To improve our final model, we decided to add one quantitative variable. Though randomly adding variables is not the most efficient way to produce a final model, the variable <code>RES.PRICE</code> had a high correlation (0.93) with <code>OUTAGE.DURATION</code>. Since this variable represents the monthly electric price for the area where that outage occurs, it adds a new layer of data and relationships not reflected in our other two variables. It is also interesting to explore if power companies are quicker to resolve areas that have higher vs lower rates. A graph of <code>OUTAGE.DURATION</code> vs <code>RES.PRICE</code> demonstrates that strong correlation. To best represent the relationship, we explored adding polynomial features to <code>RES.PRICE</code>, using cross-validation to find the best polynomial features to add. We also decided to apply a <code>StandardScaler</code> transformation.
+    To improve our final model, we decided to add two quantitative variables. Though randomly adding variables is not the most efficient way to produce a final model, the variable <strong>RES.PRICE</strong> had a high correlation (0.93) with <strong>OUTAGE.DURATION</strong>. Since this variable represents the monthly electric price for the area where that outage occurs, it adds a new layer of data and relationships not reflected in our other two variables. It is also interesting to explore if power companies are quicker to resolve areas that have higher vs lower rates. A graph of <strong>OUTAGE.DURATION vs RES.PRICE</strong> demonstrates that strong linear relationship. To best represent the relationship, we decided to use no polynomial features. A graph of <strong>RES.PRICE</strong> shows that the relationship is best fit by a simple linear model, so complicating the model would lead to a less accurate result. For <strong>RES.PRICE</strong>, we applied the <code>StandardScaler</code> transformation.
   </p>
   <p>
-    Another variable we decided to add was <code>AREAPCT_UC</code>, which is a quantitative variable that describes the percent of the outage’s state that is urban. The reason this variable is important is because it accounts for the difference in response times for rural vs urban areas. And if a state has a higher percentage of rural areas, perhaps the response time will differ. For this variable, we decided to apply a <code>StandardScaler</code> transformation.
+    We added another quantitative variable, <strong>UTIL.CONTRI</strong>, which represents the percentage that the utilities sector contributes to each state GDP. The reason this variable is useful is because perhaps if a state’s utilities sector is more established and well-funded, they will fix outages faster, and that can be communicated to residents. For this variable, we added the <code>RobustScaler</code> transformer. <code>RobustScaler</code> is useful when there are outliers in the dataset, and for time series data, there is a high chance of outliers since economic events that influence GDP are unpredictable. <code>RobustScaler</code> scales the features using the median and mode instead of the mean, so it is less influenced by outliers.
   </p>
   <p>
-    The reason we decided to use <code>StandardScaler</code> is for our final model, which also uses <code>LASSO</code> regression. LASSO is important when we are trying to identify the best parameters in the model, with the goal of generalizing unseen data. When using LASSO, it is important to use the <code>StandardScaler</code> transformer to ensure that all coefficients are penalized equally.
+    The reason we decided to use <code>StandardScaler</code> and <code>RobustScaler</code> for our final model, which also uses <strong>Ridge regression</strong>, is to ensure that the weights of coefficients are penalized to the same degree. Ridge is important when we are trying to generalize unseen data by limiting the extremity of the weights. To find the best alpha, we used k-fold cross-validation for a wide range of values, and the best parameter was <strong>0.03125</strong>, showing that the alpha with the lowest average validation MSE was this value.
   </p>
+  <p>
+    This model performs better than our first: while the training MSE was about the same, test MSE decreased by about 1%. Though this change is small, it reveals how these new variables are helpful in predicting <strong>OUTAGE.DURATION</strong>. However, test MSE is still double that of training MSE, representing that as much as Ridge regression is useful in overfitting, it is tough to generalize this model to unseen data. Some reason behind this phenomenon is that economic data is quite unpredictable, so it is almost certain that the trends in any testing data—or any two data sets, for that matter—will never be identical.
+  </p>
+<section>
+  <h2>Code Implementation</h2>
   <pre>
     <code>
-from sklearn.impute import SimpleImputer
-from sklearn.preprocessing import StandardScaler
-from sklearn.linear_model import Lasso
-from sklearn.preprocessing import FunctionTransformer, PolynomialFeatures, OneHotEncoder
-from sklearn.pipeline import Pipeline, make_pipeline
 from sklearn.compose import make_column_transformer
-from sklearn.linear_model import LinearRegression
-from sklearn.model_selection import GridSearchCV
+from sklearn.pipeline import make_pipeline
+from sklearn.impute import SimpleImputer
+from sklearn.preprocessing import OneHotEncoder, StandardScaler, PolynomialFeatures, RobustScaler
 from sklearn.linear_model import Ridge
+from sklearn.model_selection import GridSearchCV
+from sklearn.metrics import mean_squared_error
+import numpy as np
 
-X = df.loc[:, df.columns != 'OUTAGE.DURATION']
-y = df['OUTAGE.DURATION']
-
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=42)
-
-categorical_transforms = make_pipeline(OneHotEncoder
-                                       (drop='first', handle_unknown='ignore'), SimpleImputer(strategy = 'most_frequent'))
-numerical_cols = make_pipeline(SimpleImputer(fill_value=0), StandardScaler(),PolynomialFeatures(2,include_bias=False))
-
-preprocessing = make_column_transformer((categorical_transforms, ['CLIMATE.CATEGORY', 'CAUSE.CATEGORY']),
-                                        (numerical_cols, list(X_train.select_dtypes('number').columns)))
-
-hyperparams = {
-'ridge__alpha' : 2.0 ** np.arange(-5, 20)}
-#'columntransformernumerical_cols__pipeline__polynomialfeatures__degree': range(1, 6)}
-
-searcher = GridSearchCV(
-estimator = make_pipeline(preprocessing, Ridge()),
-param_grid=hyperparams,
-cv=5, # k = 5.
-scoring='neg_mean_squared_error'
+# Define preprocessing pipelines
+categorical_transforms = make_pipeline(
+    OneHotEncoder(drop='first', handle_unknown='ignore'),
+    SimpleImputer(strategy='most_frequent')
+)
+numerical_cols = make_pipeline(
+    SimpleImputer(fill_value=0),
+    StandardScaler(),
+    PolynomialFeatures(2, include_bias=False)
+)
+gdp_col = make_pipeline(
+    RobustScaler(),
+    StandardScaler()
 )
 
+# Combine transformations
+preprocessing = make_column_transformer(
+    (categorical_transforms, ['CLIMATE.CATEGORY', 'CAUSE.CATEGORY']),
+    (numerical_cols, ['RES.PRICE']),
+    (gdp_col, ['UTIL.CONTRI'])
+)
+
+# Define hyperparameter grid
+hyperparams = {
+    'ridge__alpha': 2.0 ** np.arange(-5, 20)
+}
+
+# Initialize GridSearchCV
+searcher = GridSearchCV(
+    estimator=make_pipeline(preprocessing, Ridge()),
+    param_grid=hyperparams,
+    cv=5,  # k = 5 folds
+    scoring='neg_mean_squared_error'
+)
+
+# Fit the model
 searcher.fit(X_train, y_train)
 
-#model = make_pipeline(preprocessing, Lasso())
-#model.fit(X_train, y_train)
+# Predict and evaluate
+y_pred_train3 = searcher.predict(X_train)
+y_pred_test3 = searcher.predict(X_test)
 
-y_pred_train = searcher.predict(X_train)
-y_pred_test = searcher.predict(X_test)
-
-train_mse = mean_squared_error(y_train, y_pred_train)
-test_mse = mean_squared_error(y_test, y_pred_test)
+train_mse = mean_squared_error(y_train, y_pred_train3)
+test_mse = mean_squared_error(y_test, y_pred_test3)
 
 print(f"Train MSE: {train_mse}")
 print(f"Test MSE: {test_mse}")
-
-# Output:
-# Train MSE: 17413483.47043481
-# Test MSE: 60549018.451451585
-   </code>
+    </code>
   </pre>
 </section>
