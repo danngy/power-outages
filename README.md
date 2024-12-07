@@ -263,45 +263,32 @@ from sklearn.model_selection import GridSearchCV
 from sklearn.metrics import mean_squared_error
 import numpy as np
 
-# Define preprocessing pipelines
-categorical_transforms = make_pipeline(
-    OneHotEncoder(drop='first', handle_unknown='ignore'),
-    SimpleImputer(strategy='most_frequent')
-)
-numerical_cols = make_pipeline(
-    SimpleImputer(fill_value=0),
-    StandardScaler(),
-    PolynomialFeatures(2, include_bias=False)
-)
-gdp_col = make_pipeline(
-    RobustScaler(),
-    StandardScaler()
-)
+categorical_transforms = make_pipeline(OneHotEncoder
+                                       (drop='first', handle_unknown='ignore'), SimpleImputer(strategy = 'most_frequent'))
+numerical_cols = make_pipeline(SimpleImputer(fill_value=0), StandardScaler())
 
-# Combine transformations
-preprocessing = make_column_transformer(
-    (categorical_transforms, ['CLIMATE.CATEGORY', 'CAUSE.CATEGORY']),
-    (numerical_cols, ['RES.PRICE']),
-    (gdp_col, ['UTIL.CONTRI'])
-)
+gdp_col = make_pipeline(RobustScaler())
 
-# Define hyperparameter grid
+preprocessing = make_column_transformer((categorical_transforms, ['CLIMATE.CATEGORY', 'CAUSE.CATEGORY']),
+                                        (numerical_cols, ['RES.PRICE']),
+                                        (gdp_col, ['UTIL.CONTRI']))
+
 hyperparams = {
-    'ridge__alpha': 2.0 ** np.arange(-5, 20)
-}
+'ridge__alpha' : 2.0 ** np.arange(-5, 20)}
+#'columntransformernumerical_cols__pipeline__polynomialfeatures__degree': range(1, 6)}
 
-# Initialize GridSearchCV
 searcher = GridSearchCV(
-    estimator=make_pipeline(preprocessing, Ridge()),
-    param_grid=hyperparams,
-    cv=5,  # k = 5 folds
-    scoring='neg_mean_squared_error'
+estimator = make_pipeline(preprocessing, Ridge()),
+param_grid=hyperparams,
+cv=5, # k = 5.
+scoring='neg_mean_squared_error'
 )
 
-# Fit the model
 searcher.fit(X_train, y_train)
 
-# Predict and evaluate
+#model = make_pipeline(preprocessing, Lasso())
+#model.fit(X_train, y_train)
+
 y_pred_train3 = searcher.predict(X_train)
 y_pred_test3 = searcher.predict(X_test)
 
