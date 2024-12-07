@@ -1,5 +1,5 @@
-<h1>Power Outages Analysis</h1>
-by <em>Jordyn Ives</em> and <em>Dan Nguyen</em>
+<h1>What Factors Effect Power Outage Duration</h1>
+by <em>Jordyn Ives (jordyni)</em> and <em>Dan Nguyen (danng)</em>
 
  <p>
       Have you ever been stuck in a power outage wondering how long it will last or why it happened in the first place? 
@@ -310,6 +310,10 @@ test_mse = mean_squared_error(y_test, y_pred_test3)
 
 print(f"Train MSE: {train_mse}")
 print(f"Test MSE: {test_mse}")
+
+# Output
+Train MSE: 20438010.0343918
+Test MSE: 57973534.18335499
     </code>
   </pre>
 </section>
